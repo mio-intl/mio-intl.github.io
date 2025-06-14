@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration.">
+  <title>Masovskiy International Organization</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    header {
+      background: #ffffff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    header img {
+      max-width: 100px;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav button {
+      margin: 0 0.3rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #1f2937;
+      color: #fff;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background-color: #374151;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+    ul {
+      padding-left: 1.25rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin: 3rem 0 1rem;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-top: 2rem;
+      color: #374151;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #f3f4f6;
+      padding: 1.5rem;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      background: #e5e7eb;
+    }
+    .doc-links a {
+      display: inline-block;
+      margin: 0.4rem 0;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      background: #1d4ed8;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .doc-links a:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo-1.png" alt="MIO Logo">
+    <h1>Masovskiy International Organization</h1>
+    <p data-en="Digital trust. Global vision." data-ru="Цифровое доверие. Глобальное видение."></p>
+    <nav>
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ru')">Русский</button>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2 data-en="Who We Are" data-ru="О нас"></h2>
+      <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation. Our range of work spans from digital certificates to cultural initiatives, including music, identity, global participation, and more."
+         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества. Наша деятельность охватывает цифровые сертификаты, культуру, музыку, идентичность, глобальное представительство и многое другое.">
+      </p>
+    </section>
+
+    <section>
+      <h2 data-en="Our Work" data-ru="Чем мы занимаемся"></h2>
+      <div class="grid">
+        <div class="card">
+          <h3 data-en="Digital Identity" data-ru="Цифровая идентичность"></h3>
+          <p data-en="Secure, human-readable identity systems (ASCII-ID)."
+             data-ru="Безопасные, человеко-читаемые идентификаторы (ASCII-ID)."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Trust Infrastructure" data-ru="Инфраструктура доверия"></h3>
+          <p data-en="Our own CA, trust packages, and signature verification."
+             data-ru="Собственный УЦ, trust-пакеты и проверка подписей."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Legal Framework" data-ru="Юридическая база"></h3>
+          <p data-en="We maintain a dual-language Charter for transparency."
+             data-ru="Поддерживаем двуязычный устав для прозрачности."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Community & Culture" data-ru="Сообщество и культура"></h3>
+          <p data-en="From independent rock bands to international participation."
+             data-ru="От независимых рок-групп до представления стран на международной арене."></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Documents & Projects" data-ru="Документы и проекты"></h2>
+      <div class="doc-links">
+        <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer + Key Information)" data-ru="📦 TrustPackage (Установщик УЦ + Основная Информация)"></a><br>
+        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="How to Join" data-ru="Как присоединиться"></h2>
+      <p data-en="We welcome all who believe in trust, transparency, and cooperation. Whether you're a developer, musician, writer, or diplomat — MIO is a place to grow and build together."
+         data-ru="Мы приветствуем всех, кто верит в доверие, прозрачность и сотрудничество. Будь вы разработчиком, музыкантом, писателем или дипломатом — MIO это место для роста и совместного будущего."></p>
+    </section>
+  </main>
+
+  <footer>
+    <p data-en="© 2025 Masovskiy International Organization. All rights reserved."
+       data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+    setLang('en');
+  </script>
+</body>
+</html>
