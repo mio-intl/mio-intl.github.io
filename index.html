@@ -8,9 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -70,9 +68,7 @@
       margin-bottom: 1rem;
       color: #111827;
     }
-    ul {
-      padding-left: 1.25rem;
-    }
+    ul { padding-left: 1.25rem; }
     footer {
       text-align: center;
       font-size: 0.9rem;
@@ -129,8 +125,7 @@
     <section>
       <h2 data-en="Who We Are" data-ru="О нас"></h2>
       <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation. Our range of work spans from digital certificates to cultural initiatives, including music, identity, global participation, and more."
-         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества. Наша деятельность охватывает цифровые сертификаты, культуру, музыку, идентичность, глобальное представительство и многое другое.">
-      </p>
+         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества. Наша деятельность охватывает цифровые сертификаты, культуру, музыку, идентичность, глобальное представительство и многое другое."></p>
     </section>
 
     <section>
@@ -163,7 +158,9 @@
       <h2 data-en="Documents & Projects" data-ru="Документы и проекты"></h2>
       <div class="doc-links">
         <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer + Key Information)" data-ru="📦 TrustPackage (Установщик УЦ + Ключевая Информация)"></a><br>
-        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a>
+        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a><br>
+        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/ascii-id.md" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
+        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/MIO_structure.md" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a>
       </div>
     </section>
 
@@ -177,12 +174,20 @@
   <footer>
     <p data-en="© 2025 Masovskiy International Organization. All rights reserved."
        data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
+    <p><span data-en="Contact us: " data-ru="Связаться с нами: "></span><a href="mailto:masovskiy077@mail.ru">masovskiy077@mail.ru</a></p>
   </footer>
 
   <script>
     function setLang(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
+      });
+      // Update dynamic links based on language
+      document.querySelectorAll('a[href*="ascii-id.md"]').forEach(link => {
+        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/ascii-id.md`;
+      });
+      document.querySelectorAll('a[href*="MIO_structure.md"]').forEach(link => {
+        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/MIO_structure.md`;
       });
     }
     setLang('en');
