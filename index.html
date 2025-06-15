@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration."/>
+  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration.">
+  <meta property="og:title" content="Masovskiy International Organization (MIO)">
+  <meta property="og:description" content="Independent digital institution for trust, identity, and global collaboration.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/mio-intl/trustpackage/main/assets/verified-by-mio-badge.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>Masovskiy International Organization</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
@@ -108,6 +113,31 @@
     .doc-links a:hover {
       background: #2563eb;
     }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background: #111827;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #1f2937;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.3rem; }
+    }
   </style>
 </head>
 <body>
@@ -123,9 +153,15 @@
 
   <main>
     <section>
+      <h2 data-en="Our Mission" data-ru="Наша миссия"></h2>
+      <p data-en="MIO exists to empower individuals and organizations through verifiable trust infrastructure, digital identity, and global cooperation built on transparency and independence."
+         data-ru="MIO существует, чтобы дать людям и организациям возможность использовать проверяемую инфраструктуру доверия, цифровую идентичность и глобальное сотрудничество, основанное на прозрачности и независимости."></p>
+    </section>
+
+    <section>
       <h2 data-en="Who We Are" data-ru="О нас"></h2>
-      <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation. Our range of work spans from digital certificates to cultural initiatives, including music, identity, global participation, and more."
-         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества. Наша деятельность охватывает цифровые сертификаты, культуру, музыку, идентичность, глобальное представительство и многое другое."></p>
+      <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation..."
+         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества..."></p>
     </section>
 
     <section>
@@ -157,8 +193,8 @@
     <section>
       <h2 data-en="Documents & Projects" data-ru="Документы и проекты"></h2>
       <div class="doc-links">
-        <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer + Key Information)" data-ru="📦 TrustPackage (Установщик УЦ + Ключевая Информация)"></a><br>
-        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a><br>
+        <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage" data-ru="📦 TrustPackage"></a><br>
+        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base" data-ru="✅ Valid Base"></a><br>
         <a id="asciiLink" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
         <a id="structureLink" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a><br>
         <a id="charterLink" target="_blank" data-en="📜 View Charter" data-ru="📜 Устав организации"></a><br>
@@ -168,8 +204,15 @@
 
     <section>
       <h2 data-en="How to Join" data-ru="Как присоединиться"></h2>
-      <p data-en="We welcome all who believe in trust, transparency, and cooperation. Whether you're a developer, musician, writer, or diplomat — MIO is a place to grow and build together."
-         data-ru="Мы приветствуем всех, кто верит в доверие, прозрачность и сотрудничество. Будь вы разработчиком, музыкантом, писателем или дипломатом — MIO это место для роста и совместного будущего."></p>
+      <p data-en="We welcome all who believe in trust, transparency, and cooperation..."
+         data-ru="Мы приветствуем всех, кто верит в доверие, прозрачность и сотрудничество..."></p>
+
+      <form action="mailto:masovskiy077@mail.ru" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name / Имя" required>
+        <input type="email" name="email" placeholder="Your Email / Эл. почта" required>
+        <textarea name="message" rows="5" placeholder="Tell us about yourself / Расскажите о себе" required></textarea>
+        <button type="submit" data-en="Send Request" data-ru="Отправить заявку"></button>
+      </form>
     </section>
   </main>
 
@@ -188,7 +231,6 @@
       document.querySelectorAll('[data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
       });
-
       document.getElementById('asciiLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
       document.getElementById('structureLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
       document.getElementById('charterLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/charter.md`;
