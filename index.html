@@ -25,9 +25,11 @@
       --glass-blur: blur(16px);
       --glass-border: 1px solid rgba(255, 255, 255, 0.2);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.15);
+      /* Timing for smoother header animations */
+      --transition-header: 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
       --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-medium: 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-slow: 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-medium: 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-slow: 1s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     * {
@@ -59,14 +61,19 @@
       border-bottom: var(--glass-border);
       box-shadow: var(--shadow-glass);
       padding: 1.5rem 1rem;
-      transition: padding var(--transition-medium), flex-direction var(--transition-medium), align-items var(--transition-medium);
+      transition:
+        padding var(--transition-header),
+        flex-direction var(--transition-header),
+        align-items var(--transition-header),
+        backdrop-filter var(--transition-header),
+        background var(--transition-header);
     }
 
     /* Logo */
     header img {
       max-width: 120px;
       margin-bottom: 0.5rem;
-      transition: max-width var(--transition-medium), margin-bottom var(--transition-medium);
+      transition: max-width var(--transition-header), margin-bottom var(--transition-header);
     }
 
     /* Main title */
@@ -74,22 +81,26 @@
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 0.3rem;
-      transition: opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
+      transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
 
-    /* Slogan */
+    /* Slogan: bolder, serious yet friendly, single line */
     header p.slogan {
       font-size: 1.1rem;
-      color: #4b5563;
+      font-weight: 600;
+      color: #333; /* darker for seriousness but still friendly */
       margin-bottom: 0.5rem;
-      transition: font-size var(--transition-medium), opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: font-size var(--transition-header), opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
       opacity: 1;
     }
 
     /* Nav buttons */
     nav {
       margin-top: 0.5rem;
-      transition: opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
+      transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
     nav button {
       background: rgba(255, 255, 255, 0.5);
@@ -111,12 +122,14 @@
       transform: translateY(-2px);
     }
 
-    /* Shrinked header */
+    /* Shrinked header: logo left, slogan right in one line */
     header.shrink {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding: 0.5rem 1rem;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.4);
     }
     /* Hide title and nav on shrink */
     header.shrink h1,
@@ -127,7 +140,7 @@
       height: 0;
       margin: 0;
       overflow: hidden;
-      transition: opacity var(--transition-medium), transform var(--transition-medium), height var(--transition-medium);
+      transition: opacity var(--transition-header), transform var(--transition-header), height var(--transition-header);
     }
     /* Shrink logo */
     header.shrink img {
@@ -280,6 +293,10 @@
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
       section { padding: 1.5rem; }
+      /* Ensure slogan stays one line but can shrink font */
+      header.shrink p.slogan {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -408,7 +425,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll
+    // Header shrink on scroll with smoother timing
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -431,7 +448,7 @@
             const sec = entry.target;
             // Determine delay based on index among siblings
             const index = Array.from(sections).indexOf(sec);
-            sec.style.animationDelay = `${index * 0.2}s`;
+            sec.style.animationDelay = `${index * 0.3}s`;
             sec.classList.add('section-visible');
             obs.unobserve(sec);
           }
@@ -444,7 +461,7 @@
     });
 
     function getSendMessage() {
-      // Determine current lang by checking text content in nav
+      // Determine current lang by checking text in nav
       const btn = document.querySelector('nav button');
       const isRu = btn && btn.textContent.includes('Рус');
       return isRu
