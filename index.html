@@ -52,6 +52,17 @@
       scroll-behavior: smooth;
     }
 
+    @keyframes bgGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Optional subtle background animation */
+    body {
+      background-size: 400% 400%;
+      animation: bgGradient 20s ease infinite;
+    }
+
     /* HEADER */
     header {
       position: sticky;
@@ -94,7 +105,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: font-size var(--transition-header), margin var(--transition-header);
+      transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header), height var(--transition-header);
       margin-left: 0.5rem;
     }
 
@@ -122,7 +133,7 @@
       transform: translateY(-2px);
     }
 
-    /* Shrinked header */
+    /* Shrinked header: hide title, nav, and shrink slogan fully */
     header.shrink {
       flex-direction: row;
       align-items: center;
@@ -147,10 +158,13 @@
       transition: max-width var(--transition-header);
     }
     header.shrink p.slogan {
-      font-size: 1rem;
+      /* Fully shrink slogan: hide via opacity and height */
+      opacity: 0;
+      font-size: 0;
+      height: 0;
       margin: 0;
-      margin-left: 1rem;
-      white-space: nowrap;
+      overflow: hidden;
+      transition: opacity var(--transition-header), font-size var(--transition-header), height var(--transition-header), margin var(--transition-header);
     }
 
     /* KEYFRAMES FOR SECTION REVEAL */
@@ -308,8 +322,8 @@
         margin-left: 0.3rem;
       }
       header.shrink p.slogan {
-        font-size: 0.85rem;
-        margin-left: 0.5rem;
+        font-size: 0;
+        margin-left: 0;
       }
     }
   </style>
@@ -435,7 +449,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll
+    // Header shrink on scroll: hide title, nav, and fully hide slogan on scroll down
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
