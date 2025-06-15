@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Masovskiy International Organization (MIO) – Digital institution for trust, identity, and global collaboration."/>
+  <meta name="description" content="Masovskiy International Organization (MIO) – Digital institution for trust, identity, culture, and global collaboration."/>
   <meta property="og:title" content="Masovskiy International Organization (MIO)" />
-  <meta property="og:description" content="Digital trust. Global vision." />
+  <meta property="og:description" content="Digital trust. Global vision. Cultural innovation." />
   <meta property="og:image" content="https://mio-intl.github.io/mio/og-image.png" />
   <meta property="og:url" content="https://mio-intl.github.io/mio" />
 
@@ -25,6 +25,9 @@
       --glass-blur: blur(16px);
       --glass-border: 1px solid rgba(255, 255, 255, 0.2);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.15);
+      --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-medium: 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-slow: 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
 
     * {
@@ -39,6 +42,8 @@
       color: #1f2937;
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     /* HEADER */
@@ -54,22 +59,22 @@
       border-bottom: var(--glass-border);
       box-shadow: var(--shadow-glass);
       padding: 1.5rem 1rem;
-      transition: padding 0.4s ease, flex-direction 0.4s ease, align-items 0.4s ease;
+      transition: padding var(--transition-medium), flex-direction var(--transition-medium), align-items var(--transition-medium);
     }
 
     /* Logo */
     header img {
       max-width: 120px;
       margin-bottom: 0.5rem;
-      transition: max-width 0.4s ease, margin-bottom 0.4s ease;
+      transition: max-width var(--transition-medium), margin-bottom var(--transition-medium);
     }
 
-    /* Main title (we will hide on shrink) */
+    /* Main title */
     header h1 {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 0.3rem;
-      transition: opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
+      transition: opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
     }
 
     /* Slogan */
@@ -77,14 +82,14 @@
       font-size: 1.1rem;
       color: #4b5563;
       margin-bottom: 0.5rem;
-      transition: font-size 0.4s ease, opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
+      transition: font-size var(--transition-medium), opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
       opacity: 1;
     }
 
     /* Nav buttons */
     nav {
       margin-top: 0.5rem;
-      transition: opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
+      transition: opacity var(--transition-medium), transform var(--transition-medium), margin var(--transition-medium);
     }
     nav button {
       background: rgba(255, 255, 255, 0.5);
@@ -95,10 +100,15 @@
       margin: 0 0.25rem;
       cursor: pointer;
       backdrop-filter: blur(4px);
-      transition: background 0.2s;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.95rem;
     }
     nav button:hover {
       background: #e5e7eb;
+      transform: translateY(-2px);
     }
 
     /* Shrinked header */
@@ -117,6 +127,7 @@
       height: 0;
       margin: 0;
       overflow: hidden;
+      transition: opacity var(--transition-medium), transform var(--transition-medium), height var(--transition-medium);
     }
     /* Shrink logo */
     header.shrink img {
@@ -129,6 +140,28 @@
       opacity: 1;
       transform: none;
       margin: 0;
+    }
+
+    /* KEYFRAMES FOR REVEAL */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SECTION REVEAL INITIAL */
+    .section-hidden {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    /* VISIBLE: applies animation with delay set inline */
+    .section-visible {
+      animation: fadeSlideUp var(--transition-slow) forwards;
     }
 
     /* MAIN CONTENT */
@@ -152,6 +185,9 @@
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .grid {
@@ -165,7 +201,7 @@
       padding: 1.25rem;
       border-radius: 16px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      transition: transform 0.2s, background 0.3s;
+      transition: transform var(--transition-fast), background var(--transition-medium);
       backdrop-filter: var(--glass-blur);
       border: var(--glass-border);
     }
@@ -176,7 +212,9 @@
     }
 
     .doc-links a {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       background: #2563eb;
       color: white;
       padding: 0.7rem 1rem;
@@ -184,12 +222,13 @@
       text-decoration: none;
       font-weight: 600;
       margin: 0.4rem 0;
-      transition: background 0.2s;
+      transition: background var(--transition-fast), transform var(--transition-fast);
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .doc-links a:hover {
       background: #1d4ed8;
+      transform: translateY(-2px);
     }
 
     form {
@@ -205,6 +244,11 @@
       font-size: 1rem;
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(6px);
+      transition: border-color var(--transition-fast);
+    }
+    input:focus, textarea:focus {
+      border-color: #2563eb;
+      outline: none;
     }
 
     button[type="submit"] {
@@ -216,10 +260,14 @@
       font-size: 1rem;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background var(--transition-fast), transform var(--transition-fast);
     }
-
     button[type="submit"]:hover {
       background: #059669;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -239,63 +287,83 @@
   <header>
     <img src="logo-1.png" alt="MIO Logo" />
     <h1>Masovskiy International Organization</h1>
-    <p class="slogan" data-en="Digital trust. Global vision." data-ru="Цифровое доверие. Глобальное видение."></p>
+    <p class="slogan" data-en="🌐 Digital trust. Global vision. Cultural innovation." data-ru="🌐 Цифровое доверие. Глобальное видение. Культурные инновации."></p>
     <nav>
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ru')">Русский</button>
+      <button onclick="setLang('en')">🇬🇧 English</button>
+      <button onclick="setLang('ru')">🇷🇺 Русский</button>
     </nav>
   </header>
 
   <main>
-    <section>
-      <h2 data-en="About MIO" data-ru="О MIO"></h2>
-      <p data-en="Masovskiy International Organization (MIO) is a digital institution dedicated to trust, identity verification, and fostering global collaboration through innovative technology."
-         data-ru="Masovskiy International Organization (MIO) — цифровая организация, посвящённая доверию, верификации личности и продвижению глобального сотрудничества через инновационные технологии."></p>
+    <!-- Section: About -->
+    <section class="section-hidden">
+      <h2 data-en="🚀 About MIO" data-ru="🚀 О MIO"></h2>
+      <p data-en="Masovskiy International Organization (MIO) is a digital institution dedicated to trust, identity verification, and fostering global collaboration through innovative technology. Beyond cyber technologies, we celebrate culture: independent rock bands, artist communities, creative workshops, exhibitions, and cultural exchanges. We support events, recordings, galleries, and cross-border collaborations. Join us on a journey to build open, transparent, inclusive systems and vibrant cultural networks! 🌍✨"
+         data-ru="Masovskiy International Organization (MIO) — цифровая организация, посвящённая доверию, верификации личности и продвижению глобального сотрудничества через инновационные технологии. Помимо кибертехнологий, мы ценим культуру: независимые рок-группы, сообщества художников, творческие мастерские, выставки и культурный обмен. Поддерживаем мероприятия, записи, галереи и трансграничное сотрудничество. Присоединяйтесь к нам в создании открытых, прозрачных, инклюзивных систем и живых культурных сетей! 🌍✨"></p>
     </section>
 
-    <section>
-      <h2 data-en="Our Work" data-ru="Наша работа"></h2>
+    <!-- Section: Our Work -->
+    <section class="section-hidden">
+      <h2 data-en="💼 Our Work" data-ru="💼 Наша работа"></h2>
       <div class="grid">
         <div class="card">
-          <h3 data-en="Digital Identity" data-ru="Цифровая идентичность"></h3>
-          <p data-en="Secure, human-readable identity systems (ASCII-ID)." data-ru="Человеко-читаемые цифровые удостоверения (ASCII-ID)."></p>
+          <h3 data-en="🔐 Digital Identity" data-ru="🔐 Цифровая идентичность"></h3>
+          <p data-en="We design secure, human-readable identity systems (ASCII-ID) for seamless verification with privacy-first approach. Enabling individuals to control their digital identity globally. 🛡️"
+             data-ru="Мы разрабатываем безопасные, человеко-читаемые системы идентификации (ASCII-ID) для удобной верификации с приоритетом приватности. Позволяем людям контролировать свою цифровую идентичность по всему миру. 🛡️"></p>
         </div>
         <div class="card">
-          <h3 data-en="Trust Infrastructure" data-ru="Инфраструктура доверия"></h3>
-          <p data-en="Our own CA, trust packages, and signature verification." data-ru="Собственный УЦ, TrustPackage и проверка подписей."></p>
+          <h3 data-en="🏗️ Trust Infrastructure" data-ru="🏗️ Инфраструктура доверия"></h3>
+          <p data-en="Building and maintaining our own CA, trust packages, signature verification tools, and decentralized protocols for robust security. Empowering communities with transparent trust frameworks. 🔏"
+             data-ru="Создаем и поддерживаем собственный УЦ, TrustPackage, инструменты проверки подписей и децентрализованные протоколы для надежной безопасности. Расширяем возможности сообществ через прозрачные рамки доверия. 🔏"></p>
         </div>
         <div class="card">
-          <h3 data-en="Legal Framework" data-ru="Юридическая база"></h3>
-          <p data-en="Dual-language Charter and internal agent structure." data-ru="Двуязычный устав и внутренняя структура агентов."></p>
+          <h3 data-en="📜 Legal & Governance" data-ru="📜 Юридическая и управление"></h3>
+          <p data-en="Dual-language Charter, transparent policies, internal agent structure, and community-led governance models ensuring accountability and adaptability. ⚖️"
+             data-ru="Двуязычный Устав, прозрачные политики, внутренняя структура агентов и модели управления, основанные на сообществе, обеспечивающие подотчетность и адаптивность. ⚖️"></p>
         </div>
         <div class="card">
-          <h3 data-en="Community & Culture" data-ru="Сообщество и культура"></h3>
-          <p data-en="From music to international representation." data-ru="От музыки до международного представительства."></p>
+          <h3 data-en="🎶 Culture & Arts" data-ru="🎶 Культура и искусство"></h3>
+          <p data-en="Supporting independent rock bands with recordings, distribution, and events; artist collectives with shared studios and online galleries; creative workshops; exhibitions; and international cultural exchanges. Amplify voices and creativity! 🎸🎨"
+             data-ru="Поддержка независимых рок-групп: записи, дистрибуция и мероприятия; сообщества художников: общие студии и онлайн-галереи; творческие мастерские; выставки; международный культурный обмен. Усиливаем голоса и творчество! 🎸🎨"></p>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2 data-en="Documents & Resources" data-ru="Документы и ресурсы"></h2>
+    <!-- Section: Documents & Resources -->
+    <section class="section-hidden">
+      <h2 data-en="📄 Documents & Resources" data-ru="📄 Документы и ресурсы"></h2>
       <div class="doc-links">
         <a id="asciiLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/id" target="_blank" rel="noopener noreferrer"
-           data-en="ASCII Identity" data-ru="ASCII Удостоверение"></a>
+           data-en="🔎 ASCII Identity" data-ru="🔎 ASCII Удостоверение"></a>
         <a id="structureLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_structure.md" target="_blank" rel="noopener noreferrer"
-           data-en="Organization Structure" data-ru="Структура организации"></a>
+           data-en="🏛️ Organization Structure" data-ru="🏛️ Структура организации"></a>
         <a id="charterLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/charter.md" target="_blank" rel="noopener noreferrer"
-           data-en="Charter" data-ru="Устав"></a>
+           data-en="📜 Charter" data-ru="📜 Устав"></a>
         <a id="agentCodeLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_agent_code.md" target="_blank" rel="noopener noreferrer"
-           data-en="Agent Code of Conduct" data-ru="Кодекс агента"></a>
+           data-en="🧭 Agent Code" data-ru="🧭 Кодекс агента"></a>
       </div>
     </section>
 
-    <section>
-      <h2 data-en="Contact Us" data-ru="Связаться с нами"></h2>
-      <form onsubmit="event.preventDefault(); alert('Thank you for reaching out!');">
+    <!-- Section: Culture Highlights -->
+    <section class="section-hidden">
+      <h2 data-en="🎤 Culture Highlights" data-ru="🎤 Культурные моменты"></h2>
+      <p data-en="We organize and promote events featuring independent rock bands, art exhibitions, creative labs, and cultural exchange programs. Collaborate with artists, musicians, and cultural innovators to share experiences globally! 🤝"
+         data-ru="Мы организуем и продвигаем мероприятия с участием независимых рок-групп, художественные выставки, творческие лаборатории и программы культурного обмена. Сотрудничайте с художниками, музыкантами и культурными новаторами, чтобы делиться опытом по всему миру! 🤝"></p>
+      <ul>
+        <li data-en="🎸 Support for indie rock bands: recording, promotion, tours, and collaborations." data-ru="🎸 Поддержка независимых рок-групп: записи, продвижение, туры и сотрудничество."></li>
+        <li data-en="🎨 Artist collectives: shared studios, online galleries, exhibitions, and mentoring." data-ru="🎨 Сообщества художников: общие студии, онлайн-галереи, выставки и наставничество."></li>
+        <li data-en="🌐 Cultural exchange: residencies, cross-border workshops, and digital showcases." data-ru="🌐 Культурный обмен: резиденции, трансграничные мастерские и цифровые демонстрации."></li>
+      </ul>
+    </section>
+
+    <!-- Section: Contact Us -->
+    <section class="section-hidden">
+      <h2 data-en="✉️ Contact Us" data-ru="✉️ Связаться с нами"></h2>
+      <form onsubmit="event.preventDefault(); alert(getSendMessage());">
         <input type="text" name="name" placeholder="Name" data-en-placeholder="Name" data-ru-placeholder="Имя" required />
         <input type="email" name="email" placeholder="Email" data-en-placeholder="Email" data-ru-placeholder="Электронная почта" required />
         <textarea name="message" rows="4" placeholder="Your message" data-en-placeholder="Your message" data-ru-placeholder="Ваше сообщение" required></textarea>
-        <button type="submit" data-en="Send" data-ru="Отправить"></button>
+        <button type="submit" data-en="🚀 Send" data-ru="🚀 Отправить"></button>
       </form>
     </section>
   </main>
@@ -306,22 +374,27 @@
 
   <footer>
     <p data-en="© 2025 Masovskiy International Organization. All rights reserved." data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
-    <p><span data-en="Contact: " data-ru="Связь: "></span><a href="mailto:masovskiy077@mail.ru">masovskiy077@mail.ru</a></p>
+    <p>
+      <span>📧</span>
+      <a href="mailto:masovskiy077@mail.ru">masovskiy077@mail.ru</a>
+    </p>
   </footer>
 
   <script>
     function setLang(lang) {
+      // Text elements
       document.querySelectorAll('[data-en]').forEach(el => {
-        // text content
         if (el.hasAttribute(`data-${lang}`)) {
           el.textContent = el.getAttribute(`data-${lang}`);
         }
-        // placeholder
+      });
+      // Placeholder elements
+      document.querySelectorAll('[data-en-placeholder]').forEach(el => {
         if (el.hasAttribute(`data-${lang}-placeholder`)) {
           el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
         }
       });
-      // update links to GitHub docs
+      // Update links to GitHub docs
       const asciiLink = document.getElementById('asciiLink');
       if (asciiLink) asciiLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
       const structureLink = document.getElementById('structureLink');
@@ -347,6 +420,37 @@
       }
       lastScroll = currentScroll;
     });
+
+    // Section reveal on scroll with staggered delays
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('main section');
+      const observerOptions = { threshold: 0.1 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sec = entry.target;
+            // Determine delay based on index among siblings
+            const index = Array.from(sections).indexOf(sec);
+            sec.style.animationDelay = `${index * 0.2}s`;
+            sec.classList.add('section-visible');
+            obs.unobserve(sec);
+          }
+        });
+      }, observerOptions);
+      sections.forEach(sec => {
+        sec.classList.add('section-hidden');
+        observer.observe(sec);
+      });
+    });
+
+    function getSendMessage() {
+      // Determine current lang by checking text content in nav
+      const btn = document.querySelector('nav button');
+      const isRu = btn && btn.textContent.includes('Рус');
+      return isRu
+        ? '🙏 Спасибо за ваше сообщение! Мы скоро свяжемся с вами.'
+        : '🙏 Thank you for your message! We will be in touch soon.';
+    }
   </script>
 </body>
 </html>
