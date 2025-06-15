@@ -21,18 +21,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      /* Glassmorphism parameters */
-      --glass-bg: rgba(255, 255, 255, 0.25);
-      --glass-blur: blur(16px);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+      --glass-bg: rgba(255, 255, 255, 0.30);
+      --glass-blur: blur(20px);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.25);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
 
-      /* Transition timings for smoothness */
       --transition-header: 1s cubic-bezier(0.25, 0.1, 0.25, 1);
       --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
       --transition-medium: 1s cubic-bezier(0.4, 0.0, 0.2, 1);
       --transition-slow: 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
       --section-delay-step: 0.2s;
+
+      --bg-gradient-start: #e0f7fa;
+      --bg-gradient-end: #b3e5fc;
     }
 
     * {
@@ -43,48 +44,12 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
-      background-size: 400% 400%;
-      animation: bgGradient 20s ease infinite;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
       color: #1f2937;
       line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
       scroll-behavior: smooth;
-    }
-    @keyframes bgGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Subtle Liquid Glass sheen animation */
-    @keyframes liquidSheen {
-      0% {
-        transform: translateX(-100%) skewX(-20deg);
-      }
-      100% {
-        transform: translateX(100%) skewX(-20deg);
-      }
-    }
-    .glass-liquid {
-      position: relative;
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      border: var(--glass-border);
-      box-shadow: var(--shadow-glass);
-      overflow: hidden;
-    }
-    .glass-liquid::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 200%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateX(-100%) skewX(-20deg);
-      animation: liquidSheen 8s linear infinite;
-      pointer-events: none;
     }
 
     /* HEADER */
@@ -96,6 +61,10 @@
       flex-direction: column;
       align-items: center;
       padding: 1.5rem 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-bottom: var(--glass-border);
+      box-shadow: var(--shadow-glass);
       transition:
         padding var(--transition-header),
         flex-direction var(--transition-header),
@@ -103,18 +72,13 @@
         backdrop-filter var(--transition-header),
         background var(--transition-header);
     }
-    header.glass-liquid {
-      /* apply glass-liquid sheen */
-    }
 
-    /* Logo */
     header img {
       max-width: 120px;
       margin-bottom: 0.5rem;
       transition: max-width var(--transition-header), margin-bottom var(--transition-header);
     }
 
-    /* Main title */
     header h1 {
       font-size: 2rem;
       font-weight: 700;
@@ -122,7 +86,6 @@
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
 
-    /* Slogan: bold, serious yet friendly, single line, shifted slightly right */
     header p.slogan {
       font-size: 1.1rem;
       font-weight: 600;
@@ -131,11 +94,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: font-size var(--transition-header), opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
+      transition: font-size var(--transition-header), margin var(--transition-header);
       margin-left: 0.5rem;
     }
 
-    /* Nav buttons */
     nav {
       margin-top: 0.5rem;
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
@@ -160,16 +122,15 @@
       transform: translateY(-2px);
     }
 
-    /* Shrinked header: logo left, slogan right in one line */
+    /* Shrinked header */
     header.shrink {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding: 0.6rem 1.5rem;
-      backdrop-filter: blur(25px);
       background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(25px);
     }
-    /* Hide title and nav on shrink */
     header.shrink h1,
     header.shrink nav {
       opacity: 0;
@@ -180,17 +141,16 @@
       overflow: hidden;
       transition: opacity var(--transition-header), transform var(--transition-header), height var(--transition-header);
     }
-    /* Shrink logo */
     header.shrink img {
       max-width: 60px;
       margin-bottom: 0;
       transition: max-width var(--transition-header);
     }
-    /* Keep slogan visible, shift right */
     header.shrink p.slogan {
       font-size: 1rem;
       margin: 0;
       margin-left: 1rem;
+      white-space: nowrap;
     }
 
     /* KEYFRAMES FOR SECTION REVEAL */
@@ -226,12 +186,13 @@
       position: relative;
       padding: 2rem;
       margin-bottom: 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-glass);
       overflow: hidden;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-    section.glass-liquid {
-      border-radius: 20px;
-      /* apply glass-liquid sheen */
     }
     section:hover {
       transform: translateY(-4px);
@@ -256,16 +217,18 @@
     .card {
       position: relative;
       padding: 1.25rem;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: var(--glass-border);
       border-radius: 16px;
-      transition: transform var(--transition-fast), background var(--transition-medium), box-shadow var(--transition-fast);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
       overflow: hidden;
-    }
-    .card.glass-liquid {
-      /* apply glass-liquid sheen */
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-medium);
     }
     .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.4);
     }
 
     .doc-links a {
@@ -326,14 +289,15 @@
     }
 
     footer {
-      position: relative;
       text-align: center;
       padding: 2rem 1rem 1rem;
       font-size: 0.9rem;
       color: #6b7280;
-    }
-    footer.glass-liquid {
-      /* apply glass-liquid sheen */
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-top: var(--glass-border);
+      box-shadow: var(--shadow-glass);
+      margin-top: 2rem;
     }
 
     @media (max-width: 600px) {
@@ -351,7 +315,7 @@
   </style>
 </head>
 <body>
-  <header class="glass-liquid">
+  <header>
     <img src="logo-1.png" alt="MIO Logo" />
     <h1>Masovskiy International Organization</h1>
     <p class="slogan" data-en="🌐 Digital trust. Global vision. Cultural innovation." data-ru="🌐 Цифровое доверие. Глобальное видение. Культурные инновации."></p>
@@ -363,32 +327,32 @@
 
   <main>
     <!-- Section: About -->
-    <section class="glass-liquid section-hidden">
+    <section class="section-hidden">
       <h2 data-en="🚀 About MIO" data-ru="🚀 О MIO"></h2>
       <p data-en="Masovskiy International Organization (MIO) is a digital institution dedicated to trust, identity verification, and fostering global collaboration through innovative technology. Beyond cyber technologies, we celebrate culture: independent rock bands, artist communities, creative workshops, exhibitions, and cultural exchanges. We support events, recordings, galleries, and cross-border collaborations. Join us on a journey to build open, transparent, inclusive systems and vibrant cultural networks! 🌍✨"
          data-ru="Masovskiy International Organization (MIO) — цифровая организация, посвящённая доверию, верификации личности и продвижению глобального сотрудничества через инновационные технологии. Помимо кибертехнологий, мы ценим культуру: независимые рок-группы, сообщества художников, творческие мастерские, выставки и культурный обмен. Поддерживаем мероприятия, записи, галереи и трансграничное сотрудничество. Присоединяйтесь к нам в создании открытых, прозрачных, инклюзивных систем и живых культурных сетей! 🌍✨"></p>
     </section>
 
     <!-- Section: Our Work -->
-    <section class="glass-liquid section-hidden">
+    <section class="section-hidden">
       <h2 data-en="💼 Our Work" data-ru="💼 Наша работа"></h2>
       <div class="grid">
-        <div class="card glass-liquid">
+        <div class="card">
           <h3 data-en="🔐 Digital Identity" data-ru="🔐 Цифровая идентичность"></h3>
           <p data-en="We design secure, human-readable identity systems (ASCII-ID) for seamless verification with privacy-first approach. Enabling individuals to control their digital identity globally. 🛡️"
              data-ru="Мы разрабатываем безопасные, человеко-читаемые системы идентификации (ASCII-ID) для удобной верификации с приоритетом приватности. Позволяем людям контролировать свою цифровую идентичность по всему миру. 🛡️"></p>
         </div>
-        <div class="card glass-liquid">
+        <div class="card">
           <h3 data-en="🏗️ Trust Infrastructure" data-ru="🏗️ Инфраструктура доверия"></h3>
           <p data-en="Building and maintaining our own CA, trust packages, signature verification tools, and decentralized protocols for robust security. Empowering communities with transparent trust frameworks. 🔏"
              data-ru="Создаем и поддерживаем собственный УЦ, TrustPackage, инструменты проверки подписей и децентрализованные протоколы для надежной безопасности. Расширяем возможности сообществ через прозрачные рамки доверия. 🔏"></p>
         </div>
-        <div class="card glass-liquid">
+        <div class="card">
           <h3 data-en="📜 Legal & Governance" data-ru="📜 Юридическая и управление"></h3>
           <p data-en="Dual-language Charter, transparent policies, internal agent structure, and community-led governance models ensuring accountability and adaptability. ⚖️"
              data-ru="Двуязычный Устав, прозрачные политики, внутренняя структура агентов и модели управления, основанные на сообществе, обеспечивающие подотчетность и адаптивность. ⚖️"></p>
         </div>
-        <div class="card glass-liquid">
+        <div class="card">
           <h3 data-en="🎶 Culture & Arts" data-ru="🎶 Культура и искусство"></h3>
           <p data-en="Supporting independent rock bands with recordings, distribution, and events; artist collectives with shared studios and online galleries; creative workshops; exhibitions; and international cultural exchanges. Amplify voices and creativity! 🎸🎨"
              data-ru="Поддержка независимых рок-групп: записи, дистрибуция и мероприятия; сообщества художников: общие студии и онлайн-галереи; творческие мастерские; выставки; международный культурный обмен. Усиливаем голоса и творчество! 🎸🎨"></p>
@@ -397,7 +361,7 @@
     </section>
 
     <!-- Section: Documents & Resources -->
-    <section class="glass-liquid section-hidden">
+    <section class="section-hidden">
       <h2 data-en="📄 Documents & Resources" data-ru="📄 Документы и ресурсы"></h2>
       <div class="doc-links">
         <a id="asciiLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/id" target="_blank" rel="noopener noreferrer"
@@ -412,7 +376,7 @@
     </section>
 
     <!-- Section: Culture Highlights -->
-    <section class="glass-liquid section-hidden">
+    <section class="section-hidden">
       <h2 data-en="🎤 Culture Highlights" data-ru="🎤 Культурные моменты"></h2>
       <p data-en="We organize and promote events featuring independent rock bands, art exhibitions, creative labs, and cultural exchange programs. Collaborate with artists, musicians, and cultural innovators to share experiences globally! 🤝"
          data-ru="Мы организуем и продвигаем мероприятия с участием независимых рок-групп, художественные выставки, творческие лаборатории и программы культурного обмена. Сотрудничайте с художниками, музыкантами и культурными новаторами, чтобы делиться опытом по всему миру! 🤝"></p>
@@ -424,7 +388,7 @@
     </section>
 
     <!-- Section: Contact Us -->
-    <section class="glass-liquid section-hidden">
+    <section class="section-hidden">
       <h2 data-en="✉️ Contact Us" data-ru="✉️ Связаться с нами"></h2>
       <form onsubmit="event.preventDefault(); alert(getSendMessage());">
         <input type="text" name="name" placeholder="Name" data-en-placeholder="Name" data-ru-placeholder="Имя" required />
@@ -439,7 +403,7 @@
     <img src="badge.png" alt="Verified by MIO" style="max-width: 180px;">
   </div>
 
-  <footer class="glass-liquid">
+  <footer>
     <p data-en="© 2025 Masovskiy International Organization. All rights reserved." data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
     <p>
       <span>📧</span>
@@ -468,7 +432,6 @@
       const agentCodeLink = document.getElementById('agentCodeLink');
       if (agentCodeLink) agentCodeLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_agent_code.md`;
     }
-
     // Default language
     setLang('en');
 
