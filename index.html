@@ -81,7 +81,7 @@
     header img {
       max-width: 120px;
       margin-bottom: 0.5rem;
-      transition: max-width var(--transition-header), margin-bottom var(--transition-header);
+      transition: max-width var(--transition-header), margin var(--transition-header);
     }
 
     header h1 {
@@ -96,9 +96,8 @@
       font-weight: 600;
       color: #333;
       margin-bottom: 0.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; /* keep in one line */
+      /* remove overflow:hidden/text-overflow so full text shows */
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
       margin-left: 0.2rem; /* shifted further left */
       opacity: 1;
@@ -132,8 +131,7 @@
     header.shrink {
       flex-direction: row;
       align-items: center;
-      /* Justify to flex-start so content aligns left */
-      justify-content: flex-start;
+      justify-content: flex-start; /* align content to left */
       padding: 0.6rem 1rem; /* reduce side padding */
       background: rgba(255,255,255,0.35);
       backdrop-filter: blur(25px);
@@ -152,17 +150,17 @@
       max-width: 60px;
       margin-bottom: 0;
       margin-left: 0.5rem; /* small left margin so logo not flush to edge */
-      transition: max-width var(--transition-header), margin-left var(--transition-header);
+      transition: max-width var(--transition-header), margin var(--transition-header);
     }
     header.shrink p.slogan {
-      /* Shrink slogan to smaller but keep visible, shifted left to fit */
       opacity: 1;
-      font-size: 0.9rem;
+      font-size: 0.9rem; /* smaller but still visible */
       margin: 0;
-      margin-left: 0.1rem; /* position close to logo */
+      margin-left: 0.8rem; /* position close to logo */
       white-space: nowrap;
-      text-overflow: ellipsis;
+      /* ensure it can expand: remove overflow hidden */
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
+      flex: 1 1 auto; /* allow space to fill */
     }
 
     /* KEYFRAMES FOR SECTION REVEAL */
