@@ -21,10 +21,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --glass-bg: rgba(255, 255, 255, 0.30);
-      --glass-blur: blur(20px);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.25);
+      /* Glassmorphism parameters */
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-blur: blur(16px);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.3);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+      /* Transition timings for smoothness */
       --transition-header: 1s cubic-bezier(0.25, 0.1, 0.25, 1);
       --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
       --transition-medium: 1s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -101,7 +104,7 @@
         background var(--transition-header);
     }
     header.glass-liquid {
-      /* apply glass-liquid for subtle sheen */
+      /* apply glass-liquid sheen */
     }
 
     /* Logo */
@@ -119,7 +122,7 @@
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
 
-    /* Slogan: bold, serious yet friendly, single line, shifted right */
+    /* Slogan: bold, serious yet friendly, single line, shifted slightly right */
     header p.slogan {
       font-size: 1.1rem;
       font-weight: 600;
@@ -228,7 +231,7 @@
     }
     section.glass-liquid {
       border-radius: 20px;
-      /* background, blur, border, shadow from glass-liquid */
+      /* apply glass-liquid sheen */
     }
     section:hover {
       transform: translateY(-4px);
@@ -258,7 +261,7 @@
       overflow: hidden;
     }
     .card.glass-liquid {
-      /* apply glass-liquid styles */
+      /* apply glass-liquid sheen */
     }
     .card:hover {
       transform: translateY(-3px);
@@ -330,7 +333,7 @@
       color: #6b7280;
     }
     footer.glass-liquid {
-      /* apply glass-liquid subtle sheen */
+      /* apply glass-liquid sheen */
     }
 
     @media (max-width: 600px) {
