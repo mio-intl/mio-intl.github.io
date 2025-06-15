@@ -29,7 +29,6 @@
       --transition-header: 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
       --transition-fast: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
       --transition-medium: 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --section-delay-step: 0.2s;
 
       --bg-gradient-start: #e0f7fa;
       --bg-gradient-end: #b3e5fc;
@@ -101,7 +100,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
-      margin-left: 0.3rem; /* shifted further left */
+      margin-left: 0.2rem; /* shifted further left */
       opacity: 1;
     }
 
@@ -129,12 +128,13 @@
       transform: translateY(-2px);
     }
 
-    /* Shrinked header: hide title & nav, shrink slogan but keep visible */
+    /* Shrinked header: hide title & nav, shrink slogan but keep visible and shifted left */
     header.shrink {
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 1.5rem;
+      /* Justify to flex-start so content aligns left */
+      justify-content: flex-start;
+      padding: 0.6rem 1rem; /* reduce side padding */
       background: rgba(255,255,255,0.35);
       backdrop-filter: blur(25px);
     }
@@ -151,14 +151,15 @@
     header.shrink img {
       max-width: 60px;
       margin-bottom: 0;
-      transition: max-width var(--transition-header);
+      margin-left: 0.5rem; /* small left margin so logo not flush to edge */
+      transition: max-width var(--transition-header), margin-left var(--transition-header);
     }
     header.shrink p.slogan {
-      /* Shrink slogan to smaller but keep visible */
+      /* Shrink slogan to smaller but keep visible, shifted left to fit */
       opacity: 1;
       font-size: 0.9rem;
       margin: 0;
-      margin-left: 0.5rem; /* slightly left shift in shrink */
+      margin-left: 0.8rem; /* position close to logo */
       white-space: nowrap;
       text-overflow: ellipsis;
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
@@ -316,7 +317,7 @@
       section { padding: 1.5rem; }
       header p.slogan {
         font-size: 0.9rem;
-        margin-left: 0.2rem; /* shift further left on mobile */
+        margin-left: 0.1rem; /* shift further left on mobile */
       }
       header.shrink p.slogan {
         font-size: 0.8rem;
@@ -446,7 +447,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll: hide title, nav, shrink slogan slightly but keep visible
+    // Header shrink on scroll: hide title, nav, shrink slogan slightly but keep visible and shifted left
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
