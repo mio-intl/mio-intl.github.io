@@ -41,43 +41,51 @@
       min-height: 100vh;
     }
 
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       backdrop-filter: var(--glass-blur);
       background: var(--glass-bg);
       border-bottom: var(--glass-border);
       box-shadow: var(--shadow-glass);
-      text-align: center;
       padding: 1.5rem 1rem;
-      transition: padding 0.4s ease;
+      transition: padding 0.4s ease, flex-direction 0.4s ease, align-items 0.4s ease;
     }
 
+    /* Logo */
     header img {
       max-width: 120px;
-      margin-bottom: 1rem;
-      transition: max-width 0.4s ease;
+      margin-bottom: 0.5rem;
+      transition: max-width 0.4s ease, margin-bottom 0.4s ease;
     }
 
+    /* Main title (we will hide on shrink) */
     header h1 {
       font-size: 2rem;
       font-weight: 700;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      margin-bottom: 0.3rem;
+      transition: opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
     }
 
-    header p {
+    /* Slogan */
+    header p.slogan {
       font-size: 1.1rem;
       color: #4b5563;
-      margin-top: 0.3rem;
-      transition: font-size 0.4s ease;
+      margin-bottom: 0.5rem;
+      transition: font-size 0.4s ease, opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
+      opacity: 1;
     }
 
+    /* Nav buttons */
     nav {
-      margin-top: 1rem;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      margin-top: 0.5rem;
+      transition: opacity 0.4s ease, transform 0.4s ease, margin 0.4s ease;
     }
-
     nav button {
       background: rgba(255, 255, 255, 0.5);
       color: #1f2937;
@@ -89,30 +97,41 @@
       backdrop-filter: blur(4px);
       transition: background 0.2s;
     }
-
     nav button:hover {
       background: #e5e7eb;
     }
 
+    /* Shrinked header */
     header.shrink {
-      padding: 0.7rem 1rem;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
     }
-
+    /* Hide title and nav on shrink */
     header.shrink h1,
     header.shrink nav {
       opacity: 0;
       transform: translateY(-20px);
       pointer-events: none;
+      height: 0;
+      margin: 0;
+      overflow: hidden;
     }
-
+    /* Shrink logo */
     header.shrink img {
-      max-width: 80px;
+      max-width: 60px;
+      margin-bottom: 0;
+    }
+    /* Keep slogan visible, move to right automatically by flex */
+    header.shrink p.slogan {
+      font-size: 1rem;
+      opacity: 1;
+      transform: none;
+      margin: 0;
     }
 
-    header.shrink p {
-      font-size: 0.95rem;
-    }
-
+    /* MAIN CONTENT */
     main {
       max-width: 900px;
       margin: 2rem auto;
@@ -220,7 +239,7 @@
   <header>
     <img src="logo-1.png" alt="MIO Logo" />
     <h1>Masovskiy International Organization</h1>
-    <p data-en="Digital trust. Global vision." data-ru="Цифровое доверие. Глобальное видение."></p>
+    <p class="slogan" data-en="Digital trust. Global vision." data-ru="Цифровое доверие. Глобальное видение."></p>
     <nav>
       <button onclick="setLang('en')">English</button>
       <button onclick="setLang('ru')">Русский</button>
@@ -232,6 +251,28 @@
       <h2 data-en="About MIO" data-ru="О MIO"></h2>
       <p data-en="Masovskiy International Organization (MIO) is a digital institution dedicated to trust, identity verification, and fostering global collaboration through innovative technology."
          data-ru="Masovskiy International Organization (MIO) — цифровая организация, посвящённая доверию, верификации личности и продвижению глобального сотрудничества через инновационные технологии."></p>
+    </section>
+
+    <section>
+      <h2 data-en="Our Work" data-ru="Наша работа"></h2>
+      <div class="grid">
+        <div class="card">
+          <h3 data-en="Digital Identity" data-ru="Цифровая идентичность"></h3>
+          <p data-en="Secure, human-readable identity systems (ASCII-ID)." data-ru="Человеко-читаемые цифровые удостоверения (ASCII-ID)."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Trust Infrastructure" data-ru="Инфраструктура доверия"></h3>
+          <p data-en="Our own CA, trust packages, and signature verification." data-ru="Собственный УЦ, TrustPackage и проверка подписей."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Legal Framework" data-ru="Юридическая база"></h3>
+          <p data-en="Dual-language Charter and internal agent structure." data-ru="Двуязычный устав и внутренняя структура агентов."></p>
+        </div>
+        <div class="card">
+          <h3 data-en="Community & Culture" data-ru="Сообщество и культура"></h3>
+          <p data-en="From music to international representation." data-ru="От музыки до международного представительства."></p>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -271,17 +312,24 @@
   <script>
     function setLang(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
-        if(el.hasAttribute(`data-${lang}`)) {
+        // text content
+        if (el.hasAttribute(`data-${lang}`)) {
           el.textContent = el.getAttribute(`data-${lang}`);
         }
-        if(el.hasAttribute(`data-${lang}-placeholder`)) {
+        // placeholder
+        if (el.hasAttribute(`data-${lang}-placeholder`)) {
           el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
         }
       });
-      document.getElementById('asciiLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
-      document.getElementById('structureLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
-      document.getElementById('charterLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/charter.md`;
-      document.getElementById('agentCodeLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_agent_code.md`;
+      // update links to GitHub docs
+      const asciiLink = document.getElementById('asciiLink');
+      if (asciiLink) asciiLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
+      const structureLink = document.getElementById('structureLink');
+      if (structureLink) structureLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
+      const charterLink = document.getElementById('charterLink');
+      if (charterLink) charterLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/charter.md`;
+      const agentCodeLink = document.getElementById('agentCodeLink');
+      if (agentCodeLink) agentCodeLink.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_agent_code.md`;
     }
 
     // Default language
@@ -290,16 +338,13 @@
     // Header shrink on scroll
     const header = document.querySelector('header');
     let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-
       if (currentScroll > 60 && currentScroll > lastScroll) {
         header.classList.add('shrink');
       } else if (currentScroll < 60) {
         header.classList.remove('shrink');
       }
-
       lastScroll = currentScroll;
     });
   </script>
