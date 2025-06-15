@@ -159,8 +159,8 @@
       <div class="doc-links">
         <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer + Key Information)" data-ru="📦 TrustPackage (Установщик УЦ + Ключевая Информация)"></a><br>
         <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a><br>
-        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/ascii-id.md" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
-        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/MIO_structure.md" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a>
+        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/id/" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
+        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_structure.md" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a>
       </div>
     </section>
 
@@ -183,11 +183,11 @@
         el.textContent = el.getAttribute(`data-${lang}`);
       });
       // Update dynamic links based on language
-      document.querySelectorAll('a[href*="ascii-id.md"]').forEach(link => {
-        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/ascii-id.md`;
+      document.querySelectorAll('a[href*="id"]').forEach(link => {
+        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
       });
-      document.querySelectorAll('a[href*="MIO_structure.md"]').forEach(link => {
-        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/MIO_structure.md`;
+      document.querySelectorAll('a[href*="mio_structure.md"]').forEach(link => {
+        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
       });
     }
     setLang('en');
