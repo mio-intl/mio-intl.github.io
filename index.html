@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration."/>
   <title>Masovskiy International Organization</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -112,7 +112,7 @@
 </head>
 <body>
   <header>
-    <img src="logo-1.png" alt="MIO Logo">
+    <img src="logo-1.png" alt="MIO Logo" />
     <h1>Masovskiy International Organization</h1>
     <p data-en="Digital trust. Global vision." data-ru="Цифровое доверие. Глобальное видение."></p>
     <nav>
@@ -159,8 +159,10 @@
       <div class="doc-links">
         <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer + Key Information)" data-ru="📦 TrustPackage (Установщик УЦ + Ключевая Информация)"></a><br>
         <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base (Signature Validators)" data-ru="✅ Valid Base (Проверка подписей)"></a><br>
-        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/id/" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
-        <a href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_structure.md" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a>
+        <a id="asciiLink" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
+        <a id="structureLink" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a><br>
+        <a id="charterLink" target="_blank" data-en="📜 View Charter" data-ru="📜 Устав организации"></a><br>
+        <a id="agentCodeLink" target="_blank" data-en="🧭 Agent Code of Conduct" data-ru="🧭 Кодекс агента MIO"></a>
       </div>
     </section>
 
@@ -170,6 +172,10 @@
          data-ru="Мы приветствуем всех, кто верит в доверие, прозрачность и сотрудничество. Будь вы разработчиком, музыкантом, писателем или дипломатом — MIO это место для роста и совместного будущего."></p>
     </section>
   </main>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <img src="https://raw.githubusercontent.com/mio-intl/trustpackage/main/assets/verified-by-mio-badge.png" alt="Verified by MIO" style="max-width: 180px;">
+  </div>
 
   <footer>
     <p data-en="© 2025 Masovskiy International Organization. All rights reserved."
@@ -182,13 +188,11 @@
       document.querySelectorAll('[data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
       });
-      // Update dynamic links based on language
-      document.querySelectorAll('a[href*="id"]').forEach(link => {
-        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
-      });
-      document.querySelectorAll('a[href*="mio_structure.md"]').forEach(link => {
-        link.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
-      });
+
+      document.getElementById('asciiLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
+      document.getElementById('structureLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
+      document.getElementById('charterLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/charter.md`;
+      document.getElementById('agentCodeLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_agent_code.md`;
     }
     setLang('en');
   </script>
