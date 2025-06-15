@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Viewport для адаптивности -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <!-- Theme color для мобильных тулбаров -->
+  <meta name="theme-color" content="#e0f7fa" />
   <meta name="description" content="Masovskiy International Organization (MIO) – Digital institution for trust, identity, culture, and global collaboration."/>
   <meta property="og:title" content="Masovskiy International Organization (MIO)" />
   <meta property="og:description" content="Digital trust. Global vision. Cultural innovation." />
@@ -17,34 +20,44 @@
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
   <title>Masovskiy International Organization</title>
+  <!-- Шрифт Inter + запасные system-ui -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
+    /* Корневые переменные */
     :root {
       --glass-bg: rgba(255, 255, 255, 0.30);
+      --glass-bg-fallback: rgba(255, 255, 255, 0.85); /* если нет backdrop-filter */
       --glass-blur: blur(20px);
       --glass-border: 1px solid rgba(255, 255, 255, 0.25);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
 
-      --transition-header: 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --transition-header: 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
       --transition-fast: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-medium: 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-medium: 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
 
       --bg-gradient-start: #e0f7fa;
       --bg-gradient-end: #b3e5fc;
     }
 
-    * {
+    /* Сброс базовых стилей */
+    *, *::before, *::after {
       box-sizing: border-box;
+    }
+    html {
+      /* для iOS Safari safe-area */
+      padding-top: constant(safe-area-inset-top);
+      padding-top: env(safe-area-inset-top);
+      -webkit-text-size-adjust: 100%; /* отключаем автоувеличение шрифтов */
+    }
+    body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
       background-size: 400% 400%;
-      animation: bgGradient 20s ease infinite;
+      animation: bgGradient 25s ease infinite;
       color: #1f2937;
       line-height: 1.6;
       min-height: 100vh;
@@ -57,7 +70,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* HEADER */
+    /* Заголовок (header) */
     header {
       position: sticky;
       top: 0;
@@ -65,9 +78,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1.5rem 1rem;
-      background: var(--glass-bg);
+      padding: calc(1rem + env(safe-area-inset-top)) 1rem 1rem; /* учесть safe-area */
+      background: var(--glass-bg-fallback);
+      /* backdrop-filter, с префиксом для WebKit */
       backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border-bottom: var(--glass-border);
       box-shadow: var(--shadow-glass);
       transition:
@@ -77,9 +92,16 @@
         backdrop-filter var(--transition-header),
         background var(--transition-header);
     }
+    /* Если браузер поддерживает backdrop-filter, можно задать более прозрачный фон */
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      header {
+        background: var(--glass-bg);
+      }
+    }
 
     header img {
       max-width: 120px;
+      height: auto;
       margin-bottom: 0.5rem;
       transition: max-width var(--transition-header), margin var(--transition-header);
     }
@@ -89,6 +111,8 @@
       font-weight: 700;
       margin-bottom: 0.3rem;
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
+      text-align: center;
+      white-space: nowrap;
     }
 
     header p.slogan {
@@ -96,11 +120,11 @@
       font-weight: 600;
       color: #333;
       margin-bottom: 0.5rem;
-      white-space: nowrap; /* keep in one line */
-      /* remove overflow:hidden/text-overflow so full text shows */
+      white-space: nowrap; /* в одну строку, но при недостатке места будет 줄ить размер */
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
-      margin-left: 0.2rem; /* shifted further left */
+      margin-left: 0.2rem;
       opacity: 1;
+      text-align: center;
     }
 
     nav {
@@ -116,25 +140,34 @@
       margin: 0 0.3rem;
       cursor: pointer;
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       transition: background var(--transition-fast), transform var(--transition-fast);
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
       font-size: 0.95rem;
     }
-    nav button:hover {
+    nav button:hover,
+    nav button:focus {
       background: rgba(255, 255, 255, 0.5);
       transform: translateY(-2px);
+      outline: none;
     }
 
-    /* Shrinked header: hide title & nav, shrink slogan but keep visible and shifted left */
+    /* Состояние shrink */
     header.shrink {
       flex-direction: row;
       align-items: center;
-      justify-content: flex-start; /* align content to left */
-      padding: 0.6rem 1rem; /* reduce side padding */
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(25px);
+      justify-content: flex-start;
+      padding: 0.5rem 1rem; /* учесть safe-area ненужно, т.к. уже учтено */
+      background: var(--glass-bg-fallback);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      header.shrink {
+        background: var(--glass-bg);
+      }
     }
     header.shrink h1,
     header.shrink nav {
@@ -149,66 +182,63 @@
     header.shrink img {
       max-width: 60px;
       margin-bottom: 0;
-      margin-left: 0.5rem; /* small left margin so logo not flush to edge */
+      margin-left: 0.5rem;
       transition: max-width var(--transition-header), margin var(--transition-header);
     }
     header.shrink p.slogan {
       opacity: 1;
-      font-size: 0.9rem; /* smaller but still visible */
+      font-size: 0.9rem;
       margin: 0;
-      margin-left: 0.8rem; /* position close to logo */
+      margin-left: 0.8rem;
       white-space: nowrap;
-      /* ensure it can expand: remove overflow hidden */
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
-      flex: 1 1 auto; /* allow space to fill */
+      flex: 1 1 auto;
     }
 
-    /* KEYFRAMES FOR SECTION REVEAL */
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    /* Адаптивность header: на очень узких экранах, если всё равно не помещается, можно уменьшить дополнительно */
+    @media (max-width: 400px) {
+      header p.slogan {
+        font-size: 0.9rem;
+        margin-left: 0.2rem;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      header.shrink p.slogan {
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+      }
+      header img {
+        max-width: 50px;
       }
     }
 
-    /* SECTION REVEAL INITIAL */
-    .section-hidden {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    /* VISIBLE: applies animation with delay set inline */
-    .section-visible {
-      animation: fadeSlideUp var(--transition-medium) forwards;
-    }
-
-    /* MAIN CONTENT */
+    /* Основной контент */
     main {
       max-width: 900px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 0 1rem;
     }
-
     section {
       position: relative;
       padding: 2rem;
       margin-bottom: 2rem;
-      background: var(--glass-bg);
+      background: var(--glass-bg-fallback);
       backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border: var(--glass-border);
       border-radius: 20px;
       box-shadow: var(--shadow-glass);
       overflow: hidden;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
-    section:hover {
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      section {
+        background: var(--glass-bg);
+      }
+    }
+    section:hover,
+    section:focus-within {
       transform: translateY(-4px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
     }
-
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
@@ -216,31 +246,36 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.2rem;
     }
-
     .card {
       position: relative;
       padding: 1.25rem;
-      background: var(--glass-bg);
+      background: var(--glass-bg-fallback);
       backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border: var(--glass-border);
       border-radius: 16px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
       overflow: hidden;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-medium);
     }
-    .card:hover {
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      .card {
+        background: var(--glass-bg);
+      }
+    }
+    .card:hover,
+    .card:focus-within {
       transform: translateY(-3px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
       background: rgba(255, 255, 255, 0.4);
     }
-
     .doc-links a {
       display: inline-flex;
       align-items: center;
@@ -255,11 +290,12 @@
       transition: background var(--transition-fast), transform var(--transition-fast);
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .doc-links a:hover {
+    .doc-links a:hover,
+    .doc-links a:focus {
       background: #1d4ed8;
       transform: translateY(-1px);
+      outline: none;
     }
-
     form {
       display: flex;
       flex-direction: column;
@@ -272,13 +308,13 @@
       font-size: 1rem;
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       transition: border-color var(--transition-fast);
     }
     input:focus, textarea:focus {
       border-color: #2563eb;
       outline: none;
     }
-
     button[type="submit"] {
       background: #10b981;
       color: white;
@@ -293,9 +329,11 @@
       gap: 0.5rem;
       transition: background var(--transition-fast), transform var(--transition-fast);
     }
-    button[type="submit"]:hover {
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
       background: #059669;
       transform: translateY(-2px);
+      outline: none;
     }
 
     footer {
@@ -303,24 +341,36 @@
       padding: 2rem 1rem 1rem;
       font-size: 0.9rem;
       color: #6b7280;
-      background: var(--glass-bg);
+      background: var(--glass-bg-fallback);
       backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border-top: var(--glass-border);
       box-shadow: var(--shadow-glass);
       margin-top: 2rem;
     }
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      footer {
+        background: var(--glass-bg);
+      }
+    }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; }
+    /* Адаптивные медиазапросы */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.75rem; }
+      header p.slogan { font-size: 1rem; margin-left: 0.2rem; }
+      header.shrink p.slogan { font-size: 0.85rem; margin-left: 0.6rem; }
+      main { margin: 1.5rem auto; padding: 0 1rem; }
       section { padding: 1.5rem; }
-      header p.slogan {
-        font-size: 0.9rem;
-        margin-left: 0.1rem; /* shift further left on mobile */
-      }
-      header.shrink p.slogan {
-        font-size: 0.8rem;
-        margin-left: 0.3rem;
-      }
+      .grid { gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.5rem; }
+      header p.slogan { font-size: 0.9rem; margin-left: 0.1rem; }
+      header.shrink p.slogan { font-size: 0.8rem; margin-left: 0.4rem; }
+      header img { max-width: 50px; }
+      main { margin: 1rem auto; padding: 0 0.75rem; }
+      section { padding: 1rem; }
+      .grid { grid-template-columns: 1fr; gap: 0.75rem; }
     }
   </style>
 </head>
@@ -422,6 +472,7 @@
   </footer>
 
   <script>
+    // Устанавливаем язык (EN/RU)
     function setLang(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
         if (el.hasAttribute(`data-${lang}`)) {
@@ -445,7 +496,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll: hide title, nav, shrink slogan slightly but keep visible and shifted left
+    // Header shrink on scroll: hide title, nav, shrink slogan slightly but keep visible and сдвинуто влево
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
