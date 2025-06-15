@@ -101,7 +101,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
-      margin-left: 0.5rem;
+      margin-left: 0.3rem; /* shifted further left */
       opacity: 1;
     }
 
@@ -158,7 +158,7 @@
       opacity: 1;
       font-size: 0.9rem;
       margin: 0;
-      margin-left: 1rem;
+      margin-left: 0.5rem; /* slightly left shift in shrink */
       white-space: nowrap;
       text-overflow: ellipsis;
       transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
@@ -316,11 +316,11 @@
       section { padding: 1.5rem; }
       header p.slogan {
         font-size: 0.9rem;
-        margin-left: 0.3rem;
+        margin-left: 0.2rem; /* shift further left on mobile */
       }
       header.shrink p.slogan {
         font-size: 0.8rem;
-        margin-left: 0.5rem;
+        margin-left: 0.3rem;
       }
     }
   </style>
@@ -446,7 +446,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll: hide title, nav, shrink slogan but keep visible
+    // Header shrink on scroll: hide title, nav, shrink slogan slightly but keep visible
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
