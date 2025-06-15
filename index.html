@@ -3,140 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Masovskiy International Organization (MIO) – Independent digital institution for trust, identity, and global collaboration.">
-  <meta property="og:title" content="Masovskiy International Organization (MIO)">
-  <meta property="og:description" content="Independent digital institution for trust, identity, and global collaboration.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/mio-intl/trustpackage/main/assets/verified-by-mio-badge.png">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="description" content="Masovskiy International Organization (MIO) – Digital institution for trust, identity, and global collaboration."/>
+  <meta property="og:title" content="Masovskiy International Organization (MIO)" />
+  <meta property="og:description" content="Digital trust. Global vision." />
+  <meta property="og:image" content="https://mio-intl.github.io/mio/assets/og-image.png" />
+  <meta property="og:url" content="https://mio-intl.github.io/mio" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <title>Masovskiy International Organization</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
+      background: linear-gradient(145deg, #f9fafb, #e3e9ef);
       color: #1f2937;
+      line-height: 1.6;
+      backdrop-filter: blur(8px);
     }
     header {
-      background: #ffffff;
-      padding: 2rem 1rem;
+      background: rgba(255, 255, 255, 0.75);
       text-align: center;
+      padding: 2rem 1rem 1.5rem;
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
     header img {
-      max-width: 100px;
+      max-width: 90px;
       margin-bottom: 1rem;
     }
     header h1 {
       font-size: 2rem;
       font-weight: 700;
-      margin: 0;
     }
     header p {
       font-size: 1.1rem;
       color: #4b5563;
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
     nav {
       margin-top: 1rem;
     }
     nav button {
-      margin: 0 0.3rem;
+      background: #ffffff99;
+      color: #1f2937;
+      border: 1px solid #d1d5db;
       padding: 0.5rem 1rem;
-      border: none;
-      background: #1f2937;
-      color: #fff;
-      font-size: 0.95rem;
-      border-radius: 6px;
+      border-radius: 12px;
+      margin: 0 0.25rem;
       cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s;
     }
     nav button:hover {
-      background-color: #374151;
+      background: #e5e7eb;
     }
     main {
-      max-width: 960px;
+      max-width: 900px;
       margin: 2rem auto;
-      padding: 0 1rem;
+      padding: 1rem;
     }
     section {
-      background: #ffffff;
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
       padding: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      backdrop-filter: blur(12px);
     }
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       margin-bottom: 1rem;
       color: #111827;
     }
-    ul { padding-left: 1.25rem; }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #6b7280;
-      margin: 3rem 0 1rem;
-    }
-    .section-title {
-      font-weight: 600;
-      margin-top: 2rem;
-      color: #374151;
-    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
     }
     .card {
-      background: #f3f4f6;
-      padding: 1.5rem;
-      border-radius: 10px;
-      transition: 0.3s;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 1.25rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      transition: transform 0.2s, background 0.3s;
     }
     .card:hover {
-      background: #e5e7eb;
+      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-4px);
     }
     .doc-links a {
-      display: inline-block;
-      margin: 0.4rem 0;
-      text-decoration: none;
-      padding: 0.6rem 1rem;
-      background: #1d4ed8;
+      display: block;
+      background: #2563eb;
       color: white;
-      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      text-decoration: none;
       font-weight: 600;
+      margin: 0.4rem 0;
       transition: background 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .doc-links a:hover {
-      background: #2563eb;
+      background: #1d4ed8;
     }
-    form input, form textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0 1rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
       border: 1px solid #d1d5db;
-      border-radius: 6px;
+      border-radius: 12px;
       font-size: 1rem;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(4px);
     }
-    form button {
-      background: #111827;
+    button[type="submit"] {
+      background: #10b981;
       color: white;
       border: none;
-      padding: 0.7rem 1.4rem;
+      padding: 0.75rem;
+      border-radius: 12px;
       font-size: 1rem;
-      border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
-    form button:hover {
-      background: #1f2937;
+    button[type="submit"]:hover {
+      background: #059669;
     }
-
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
     @media (max-width: 600px) {
       header h1 { font-size: 1.5rem; }
-      h2 { font-size: 1.3rem; }
+      section { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -153,15 +159,15 @@
 
   <main>
     <section>
-      <h2 data-en="Our Mission" data-ru="Наша миссия"></h2>
-      <p data-en="MIO exists to empower individuals and organizations through verifiable trust infrastructure, digital identity, and global cooperation built on transparency and independence."
-         data-ru="MIO существует, чтобы дать людям и организациям возможность использовать проверяемую инфраструктуру доверия, цифровую идентичность и глобальное сотрудничество, основанное на прозрачности и независимости."></p>
+      <h2 data-en="Mission" data-ru="Миссия"></h2>
+      <p data-en="Our mission is to empower global digital trust and open identity through transparent tools, decentralized verification, and cultural inclusion."
+         data-ru="Наша миссия — укреплять глобальное цифровое доверие и открытую идентичность через прозрачные инструменты, децентрализованную проверку и культурное включение."></p>
     </section>
 
     <section>
       <h2 data-en="Who We Are" data-ru="О нас"></h2>
-      <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation..."
-         data-ru="MIO — это цифровая международная организация, создающая открытые, прозрачные и проверяемые системы доверия и сотрудничества..."></p>
+      <p data-en="MIO is a digitally-native international organization dedicated to creating open, transparent, and verifiable systems of trust and cooperation."
+         data-ru="MIO — цифровая международная организация, создающая прозрачные и проверяемые системы доверия и сотрудничества."></p>
     </section>
 
     <section>
@@ -169,23 +175,19 @@
       <div class="grid">
         <div class="card">
           <h3 data-en="Digital Identity" data-ru="Цифровая идентичность"></h3>
-          <p data-en="Secure, human-readable identity systems (ASCII-ID)."
-             data-ru="Безопасные, человеко-читаемые идентификаторы (ASCII-ID)."></p>
+          <p data-en="Secure, human-readable identity systems (ASCII-ID)." data-ru="Человеко-читаемые цифровые удостоверения (ASCII-ID)."></p>
         </div>
         <div class="card">
           <h3 data-en="Trust Infrastructure" data-ru="Инфраструктура доверия"></h3>
-          <p data-en="Our own CA, trust packages, and signature verification."
-             data-ru="Собственный УЦ, trust-пакеты и проверка подписей."></p>
+          <p data-en="Our own CA, trust packages, and signature verification." data-ru="Собственный УЦ, TrustPackage и проверка подписей."></p>
         </div>
         <div class="card">
           <h3 data-en="Legal Framework" data-ru="Юридическая база"></h3>
-          <p data-en="We maintain a dual-language Charter for transparency."
-             data-ru="Поддерживаем двуязычный устав для прозрачности."></p>
+          <p data-en="Dual-language Charter and internal agent structure." data-ru="Двуязычный устав и внутренняя структура агентов."></p>
         </div>
         <div class="card">
           <h3 data-en="Community & Culture" data-ru="Сообщество и культура"></h3>
-          <p data-en="From independent rock bands to international participation."
-             data-ru="От независимых рок-групп до представления стран на международной арене."></p>
+          <p data-en="From music to international representation." data-ru="От музыки до международного представительства."></p>
         </div>
       </div>
     </section>
@@ -193,25 +195,24 @@
     <section>
       <h2 data-en="Documents & Projects" data-ru="Документы и проекты"></h2>
       <div class="doc-links">
-        <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage" data-ru="📦 TrustPackage"></a><br>
-        <a href="https://github.com/mio-intl/valid-base/" target="_blank" data-en="✅ Valid Base" data-ru="✅ Valid Base"></a><br>
-        <a id="asciiLink" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a><br>
-        <a id="structureLink" target="_blank" data-en="🏛 View MIO Structure" data-ru="🏛 Структура MIO"></a><br>
-        <a id="charterLink" target="_blank" data-en="📜 View Charter" data-ru="📜 Устав организации"></a><br>
-        <a id="agentCodeLink" target="_blank" data-en="🧭 Agent Code of Conduct" data-ru="🧭 Кодекс агента MIO"></a>
+        <a href="https://github.com/mio-intl/trustpackage" target="_blank" data-en="📦 TrustPackage (CA Installer)" data-ru="📦 TrustPackage (Установщик УЦ)"></a>
+        <a href="https://github.com/mio-intl/valid-base" target="_blank" data-en="✅ Valid Base" data-ru="✅ Valid Base (Проверка подписей)"></a>
+        <a id="asciiLink" target="_blank" data-en="🔎 Verify ASCII ID" data-ru="🔎 Проверить ASCII ID"></a>
+        <a id="structureLink" target="_blank" data-en="🏛 MIO Structure" data-ru="🏛 Структура MIO"></a>
+        <a id="charterLink" target="_blank" data-en="📜 Charter" data-ru="📜 Устав"></a>
+        <a id="agentCodeLink" target="_blank" data-en="🧭 Agent Code" data-ru="🧭 Кодекс агента"></a>
       </div>
     </section>
 
     <section>
-      <h2 data-en="How to Join" data-ru="Как присоединиться"></h2>
-      <p data-en="We welcome all who believe in trust, transparency, and cooperation..."
-         data-ru="Мы приветствуем всех, кто верит в доверие, прозрачность и сотрудничество..."></p>
-
-      <form action="mailto:masovskiy077@mail.ru" method="POST" enctype="text/plain">
-        <input type="text" name="name" placeholder="Your Name / Имя" required>
-        <input type="email" name="email" placeholder="Your Email / Эл. почта" required>
-        <textarea name="message" rows="5" placeholder="Tell us about yourself / Расскажите о себе" required></textarea>
-        <button type="submit" data-en="Send Request" data-ru="Отправить заявку"></button>
+      <h2 data-en="Join MIO" data-ru="Присоединиться к MIO"></h2>
+      <p data-en="We're open to developers, creators, diplomats, and dreamers who believe in building trust."
+         data-ru="Мы открыты для разработчиков, создателей, дипломатов и мечтателей, кто верит в силу доверия."></p>
+      <form action="https://formspree.io/f/mqkrzeqg" method="POST">
+        <input name="name" placeholder="Your Name / Имя" required />
+        <input name="email" placeholder="Your Email / Почта" type="email" required />
+        <textarea name="message" placeholder="Tell us about yourself / Расскажите о себе" rows="5" required></textarea>
+        <button type="submit" data-en="Submit" data-ru="Отправить"></button>
       </form>
     </section>
   </main>
@@ -221,9 +222,8 @@
   </div>
 
   <footer>
-    <p data-en="© 2025 Masovskiy International Organization. All rights reserved."
-       data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
-    <p><span data-en="Contact us: " data-ru="Связаться с нами: "></span><a href="mailto:masovskiy077@mail.ru">masovskiy077@mail.ru</a></p>
+    <p data-en="© 2025 Masovskiy International Organization. All rights reserved." data-ru="© 2025 Masovskiy International Organization. Все права защищены."></p>
+    <p><span data-en="Contact: " data-ru="Связь: "></span><a href="mailto:masovskiy077@mail.ru">masovskiy077@mail.ru</a></p>
   </footer>
 
   <script>
@@ -231,6 +231,7 @@
       document.querySelectorAll('[data-en]').forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
       });
+
       document.getElementById('asciiLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
       document.getElementById('structureLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
       document.getElementById('charterLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/charter.md`;
