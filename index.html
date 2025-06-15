@@ -228,7 +228,35 @@
   </header>
 
   <main>
-    <!-- ... unchanged sections ... (оставлены как есть) -->
+    <section>
+      <h2 data-en="About MIO" data-ru="О MIO"></h2>
+      <p data-en="Masovskiy International Organization (MIO) is a digital institution dedicated to trust, identity verification, and fostering global collaboration through innovative technology."
+         data-ru="Masovskiy International Organization (MIO) — цифровая организация, посвящённая доверию, верификации личности и продвижению глобального сотрудничества через инновационные технологии."></p>
+    </section>
+
+    <section>
+      <h2 data-en="Documents & Resources" data-ru="Документы и ресурсы"></h2>
+      <div class="doc-links">
+        <a id="asciiLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/id" target="_blank" rel="noopener noreferrer"
+           data-en="ASCII Identity" data-ru="ASCII Удостоверение"></a>
+        <a id="structureLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_structure.md" target="_blank" rel="noopener noreferrer"
+           data-en="Organization Structure" data-ru="Структура организации"></a>
+        <a id="charterLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/charter.md" target="_blank" rel="noopener noreferrer"
+           data-en="Charter" data-ru="Устав"></a>
+        <a id="agentCodeLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_agent_code.md" target="_blank" rel="noopener noreferrer"
+           data-en="Agent Code of Conduct" data-ru="Кодекс агента"></a>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-en="Contact Us" data-ru="Связаться с нами"></h2>
+      <form onsubmit="event.preventDefault(); alert('Thank you for reaching out!');">
+        <input type="text" name="name" placeholder="Name" data-en-placeholder="Name" data-ru-placeholder="Имя" required />
+        <input type="email" name="email" placeholder="Email" data-en-placeholder="Email" data-ru-placeholder="Электронная почта" required />
+        <textarea name="message" rows="4" placeholder="Your message" data-en-placeholder="Your message" data-ru-placeholder="Ваше сообщение" required></textarea>
+        <button type="submit" data-en="Send" data-ru="Отправить"></button>
+      </form>
+    </section>
   </main>
 
   <div style="text-align: center; margin-top: 2rem;">
@@ -243,7 +271,12 @@
   <script>
     function setLang(lang) {
       document.querySelectorAll('[data-en]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+        if(el.hasAttribute(`data-${lang}`)) {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        }
+        if(el.hasAttribute(`data-${lang}-placeholder`)) {
+          el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+        }
       });
       document.getElementById('asciiLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/id`;
       document.getElementById('structureLink').href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/mio_structure.md`;
