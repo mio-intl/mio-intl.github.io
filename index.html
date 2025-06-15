@@ -26,10 +26,9 @@
       --glass-border: 1px solid rgba(255, 255, 255, 0.25);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
 
-      --transition-header: 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-      --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-medium: 1s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-slow: 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-header: 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --transition-fast: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-medium: 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
       --section-delay-step: 0.2s;
 
       --bg-gradient-start: #e0f7fa;
@@ -45,22 +44,18 @@
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      background-size: 400% 400%;
+      animation: bgGradient 20s ease infinite;
       color: #1f2937;
       line-height: 1.6;
       min-height: 100vh;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
-
     @keyframes bgGradient {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-    /* Optional subtle background animation */
-    body {
-      background-size: 400% 400%;
-      animation: bgGradient 20s ease infinite;
     }
 
     /* HEADER */
@@ -105,8 +100,9 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header), height var(--transition-header);
+      transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
       margin-left: 0.5rem;
+      opacity: 1;
     }
 
     nav {
@@ -133,7 +129,7 @@
       transform: translateY(-2px);
     }
 
-    /* Shrinked header: hide title, nav, and shrink slogan fully */
+    /* Shrinked header: hide title & nav, shrink slogan but keep visible */
     header.shrink {
       flex-direction: row;
       align-items: center;
@@ -158,13 +154,14 @@
       transition: max-width var(--transition-header);
     }
     header.shrink p.slogan {
-      /* Fully shrink slogan: hide via opacity and height */
-      opacity: 0;
-      font-size: 0;
-      height: 0;
+      /* Shrink slogan to smaller but keep visible */
+      opacity: 1;
+      font-size: 0.9rem;
       margin: 0;
-      overflow: hidden;
-      transition: opacity var(--transition-header), font-size var(--transition-header), height var(--transition-header), margin var(--transition-header);
+      margin-left: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: font-size var(--transition-header), margin var(--transition-header), opacity var(--transition-header);
     }
 
     /* KEYFRAMES FOR SECTION REVEAL */
@@ -322,8 +319,8 @@
         margin-left: 0.3rem;
       }
       header.shrink p.slogan {
-        font-size: 0;
-        margin-left: 0;
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
       }
     }
   </style>
@@ -449,7 +446,7 @@
     // Default language
     setLang('en');
 
-    // Header shrink on scroll: hide title, nav, and fully hide slogan on scroll down
+    // Header shrink on scroll: hide title, nav, shrink slogan but keep visible
     const header = document.querySelector('header');
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
