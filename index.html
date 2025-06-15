@@ -26,10 +26,11 @@
       --glass-border: 1px solid rgba(255, 255, 255, 0.2);
       --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.15);
       /* Even smoother header transitions */
-      --transition-header: 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-      --transition-fast: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-medium: 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
-      --transition-slow: 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-header: 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --transition-fast: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-medium: 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+      --section-delay-step: 0.15s;
     }
 
     * {
@@ -60,7 +61,7 @@
       background: var(--glass-bg);
       border-bottom: var(--glass-border);
       box-shadow: var(--shadow-glass);
-      padding: 1.5rem 1rem;
+      padding: 1rem 0.5rem; /* narrower sides so slogan fits in one line */
       transition:
         padding var(--transition-header),
         flex-direction var(--transition-header),
@@ -71,55 +72,56 @@
 
     /* Logo */
     header img {
-      max-width: 120px;
-      margin-bottom: 0.5rem;
+      max-width: 110px;
+      margin-bottom: 0.4rem;
       transition: max-width var(--transition-header), margin-bottom var(--transition-header);
     }
 
     /* Main title */
     header h1 {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
 
-    /* Slogan: bolder, serious yet friendly, single line */
+    /* Slogan: bolder, serious yet friendly, single line, shifted slightly right */
     header p.slogan {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: #333; /* darker tone */
-      margin-bottom: 0.5rem;
+      color: #333;
+      margin-bottom: 0.4rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       transition: font-size var(--transition-header), opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
       opacity: 1;
+      margin-left: 0.5rem; /* shift slightly right */
     }
 
     /* Nav buttons */
     nav {
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
       transition: opacity var(--transition-header), transform var(--transition-header), margin var(--transition-header);
     }
     nav button {
       background: rgba(255, 255, 255, 0.5);
       color: #1f2937;
       border: 1px solid #d1d5db;
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.9rem;
       border-radius: 12px;
-      margin: 0 0.25rem;
+      margin: 0 0.2rem;
       cursor: pointer;
       backdrop-filter: blur(4px);
       transition: background var(--transition-fast), transform var(--transition-fast);
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
     nav button:hover {
       background: #e5e7eb;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     /* Shrinked header: logo left, slogan right in one line */
@@ -127,8 +129,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      /* extra horizontal padding for a spacious feel */
-      padding: 0.5rem 2rem;
+      padding: 0.4rem 1rem;
       backdrop-filter: blur(20px);
       background: rgba(255,255,255,0.45);
     }
@@ -136,7 +137,7 @@
     header.shrink h1,
     header.shrink nav {
       opacity: 0;
-      transform: translateY(-20px);
+      transform: translateY(-15px);
       pointer-events: none;
       height: 0;
       margin: 0;
@@ -145,16 +146,16 @@
     }
     /* Shrink logo */
     header.shrink img {
-      max-width: 60px;
+      max-width: 50px;
       margin-bottom: 0;
+      transition: max-width var(--transition-header);
     }
-    /* Keep slogan visible, shift right slightly via flex space-between */
+    /* Keep slogan visible, shift right */
     header.shrink p.slogan {
-      font-size: 1rem;
+      font-size: 0.95rem;
       opacity: 1;
       transform: none;
       margin: 0;
-      /* add a little left margin to separate from logo */
       margin-left: 1rem;
     }
 
@@ -195,10 +196,15 @@
       box-shadow: var(--shadow-glass);
       backdrop-filter: var(--glass-blur);
       border: var(--glass-border);
+      transition: transform var(--transition-fast) var(--transition-header), box-shadow var(--transition-fast);
+    }
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       margin-bottom: 1rem;
       color: #111827;
       display: flex;
@@ -208,23 +214,24 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
     }
 
     .card {
       background: var(--glass-bg);
-      padding: 1.25rem;
+      padding: 1.2rem;
       border-radius: 16px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      transition: transform var(--transition-fast), background var(--transition-medium);
+      transition: transform var(--transition-fast), background var(--transition-medium), box-shadow var(--transition-fast);
       backdrop-filter: var(--glass-blur);
       border: var(--glass-border);
     }
 
     .card:hover {
       background: rgba(255, 255, 255, 0.55);
-      transform: translateY(-4px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
     }
 
     .doc-links a {
@@ -244,7 +251,7 @@
 
     .doc-links a:hover {
       background: #1d4ed8;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     form {
@@ -283,7 +290,7 @@
     }
     button[type="submit"]:hover {
       background: #059669;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
     footer {
@@ -294,10 +301,14 @@
     }
 
     @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; }
+      header h1 { font-size: 1.4rem; }
       section { padding: 1.5rem; }
+      header p.slogan {
+        font-size: 0.85rem;
+        margin-left: 0.3rem;
+      }
       header.shrink p.slogan {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         margin-left: 0.5rem;
       }
     }
@@ -433,15 +444,15 @@
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      if (currentScroll > 60 && currentScroll > lastScroll) {
+      if (currentScroll > 50 && currentScroll > lastScroll) {
         header.classList.add('shrink');
-      } else if (currentScroll < 60) {
+      } else if (currentScroll < 50) {
         header.classList.remove('shrink');
       }
       lastScroll = currentScroll;
     });
 
-    // Section reveal on scroll with staggered delays
+    // Section reveal on scroll with faster staggered delays
     document.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('main section');
       const observerOptions = { threshold: 0.1 };
@@ -450,7 +461,8 @@
           if (entry.isIntersecting) {
             const sec = entry.target;
             const index = Array.from(sections).indexOf(sec);
-            sec.style.animationDelay = `${index * 0.3}s`;
+            sec.style.animationDelay = `${index * var(--section-delay-step)}`
+                                    .replace('var(--section-delay-step)', '0.15'); // fallback to 0.15s step
             sec.classList.add('section-visible');
             obs.unobserve(sec);
           }
