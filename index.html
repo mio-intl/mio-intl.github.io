@@ -373,6 +373,7 @@
         <a id="structureLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_structure.md" target="_blank" rel="noopener noreferrer" data-en="🏛️ Organization Structure" data-ru="🏛️ Структура организации"></a>
         <a id="charterLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/charter.md" target="_blank" rel="noopener noreferrer" data-en="📜 Charter" data-ru="📜 Устав"></a>
         <a id="agentCodeLink" href="https://github.com/mio-intl/trustpackage/blob/main/en/mio_agent_code.md" target="_blank" rel="noopener noreferrer" data-en="🧭 Agent Code" data-ru="🧭 Кодекс агента"></a>
+        <a id="agentBaseLink" href="https://github.com/mio-intl/valid-base" target="_blank" rel="noopener noreferrer" data-en="🔍 Agent Base & Signature Verification" data-ru="🔍 База агентов и проверка подписи"></a>
       </div>
     </section>
 
@@ -418,11 +419,15 @@
         asciiLink: 'id',
         structureLink: 'mio_structure.md',
         charterLink: 'charter.md',
-        agentCodeLink: 'mio_agent_code.md'
+        agentCodeLink: 'mio_agent_code.md',
+        agentBaseLink: '' // Прямая ссылка на репозиторий, без подпапки языка
       };
       Object.keys(links).forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.href = `https://github.com/mio-intl/trustpackage/blob/main/${lang}/${links[id]}`;
+        if (el) {
+          const path = links[id] ? `https://github.com/mio-intl/trustpackage/blob/main/${lang}/${links[id]}` : 'https://github.com/mio-intl/valid-base';
+          el.href = path;
+        }
       });
     }
 
