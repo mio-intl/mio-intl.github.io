@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mio-intl.github.io/mio/sitemap.xml
+Sitemap: https://mio-intl.github.io/sitemap.xml
