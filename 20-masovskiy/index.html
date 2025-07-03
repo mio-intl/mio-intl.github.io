@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roman Paramonov — Portfolio & MIO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --glass-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+      --blur: blur(45px);
+      --radius: 36px;
+      --text-color: #ffffff;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #121212, #1e1e1e);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    .container {
+      padding: 50px;
+      max-width: 1100px;
+      margin: 0 20px;
+      background: var(--glass-bg);
+      border-radius: var(--radius);
+      backdrop-filter: var(--blur) saturate(180%);
+      -webkit-backdrop-filter: var(--blur) saturate(180%);
+      box-shadow: var(--glass-shadow);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease-in-out;
+    }
+    h1, h2, h3 {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    .lang-toggle {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+    .hidden { display: none; }
+    .section { margin-top: 50px; }
+    .tech-stack img {
+      margin: 8px 6px;
+      transition: transform 0.3s;
+    }
+    .tech-stack img:hover {
+      transform: scale(1.1);
+    }
+    .center { text-align: center; }
+    button {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      border-radius: 12px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: rgba(255,255,255,0.12);
+    }
+    .identity-box {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
+      padding: 30px;
+      margin-top: 30px;
+      text-align: center;
+      box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.07);
+    }
+    .identity-box strong {
+      font-size: 1.3rem;
+      color: #ffffff;
+    }
+    .stats-graph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .stats-graph img {
+      max-width: 100%;
+      border-radius: 14px;
+    }
+  </style>
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang').forEach(e => e.classList.add('hidden'));
+      document.querySelectorAll('.lang-' + lang).forEach(e => e.classList.remove('hidden'));
+    }
+    document.addEventListener('DOMContentLoaded', () => switchLang('en'));
+  </script>
+</head>
+<body>
+<div class="container">
+  <div class="lang-toggle">
+    <button onclick="switchLang('en')">EN</button>
+    <button onclick="switchLang('ru')">RU</button>
+  </div>
+
+  <div class="center">
+    <img height="300" width="600" src="https://user-images.githubusercontent.com/74038190/225813708-98b745f2-7d22-48cf-9150-083f1b00d6c9.gif" alt="animation" />
+  </div>
+
+  <h1 class="center lang lang-en">Hi 👋 I'm Roman!</h1>
+  <h1 class="center lang lang-ru">Привет 👋 Меня зовут Роман!</h1>
+
+  <div class="center">
+    <a href="https://t.me/masovskiy_tg" target="_blank">
+      <img src="https://img.shields.io/static/v1?message=Telegram&logo=telegram&label=&color=2CA5E0&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="telegram logo" />
+    </a>
+  </div>
+
+  <div class="center">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=UniMasOffical&" alt="visitor badge" />
+  </div>
+
+  <div class="section lang lang-en">
+    <h3>👨‍💻 About Me</h3>
+    <p>I’m Roman Paramonov — software engineer focused on Python, frontend, digital identity, and decentralized infrastructures. Since 2019 I’ve worked with web technologies like React, Vite, and Bash, and developed multiple open-source and private tools for Masovskiy International Organization (MIO).</p>
+    <ul>
+      <li>🔭 Projects: MIO Sign Utility, MIO SID (Server ID), MIO Identity Framework</li>
+      <li>📚 Mentored Python learners — some of them are now senior developers</li>
+    </ul>
+  </div>
+
+  <div class="section lang lang-ru">
+    <h3>👨‍💻 Обо мне</h3>
+    <p>Я — Роман Парамонов, инженер-программист со специализацией в Python, frontend и децентрализованных системах цифровой идентичности. С 2019 года я изучаю веб-технологии и разработал множество open-source и закрытых решений в рамках Masovskiy International Organization (MIO).</p>
+    <ul>
+      <li>🔭 Проекты: MIO Sign Utility, MIO SID (Server ID), MIO Identity Framework</li>
+      <li>📚 Обучал Python — некоторые ученики стали senior-разработчиками</li>
+    </ul>
+  </div>
+
+  <div class="section center">
+    <img src="assets/github-snake.svg" alt="snake animation" width="600" />
+  </div>
+
+  <div class="section">
+    <h3 class="lang lang-en">🛠 Technologies I Use</h3>
+    <h3 class="lang lang-ru">🛠 Технологии</h3>
+    <div class="tech-stack">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="JavaScript" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="HTML5" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="CSS3" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="React" />
+      <img src="https://skillicons.dev/icons?i=vite" height="40" alt="Vite" />
+      <img src="https://cdn.simpleicons.org/webpack/8DD6F9" height="40" alt="Webpack" />
+      <img src="https://cdn.simpleicons.org/gnubash/4EAA25" height="40" alt="Bash" />
+      <img src="https://skillicons.dev/icons?i=py" height="40" alt="Python" />
+      <img src="https://skillicons.dev/icons?i=postgres" height="40" alt="PostgreSQL" />
+      <img src="https://skillicons.dev/icons?i=docker" height="40" alt="Docker" />
+      <img src="https://skillicons.dev/icons?i=fastapi" height="40" alt="FastAPI" />
+      <img src="https://skillicons.dev/icons?i=githubpages" height="40" alt="GitHub Pages" />
+      <img src="https://skillicons.dev/icons?i=java" height="40" alt="Java" />
+    </div>
+  </div>
+
+  <div class="section stats-graph">
+    <h3 class="lang lang-en">🔥 GitHub Stats</h3>
+    <h3 class="lang lang-ru">🔥 Графики GitHub</h3>
+    <img src="https://github-readme-streak-stats.herokuapp.com?user=masovskiy&theme=dark&hide_border=true&date_format=j%20M%5B%20Y%5D" alt="streak stats" />
+    <img src="https://github-readme-stats.vercel.app/api/top-langs?username=masovskiy&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&order=2" alt="language stats" />
+  </div>
+
+  <div class="section">
+    <h3 class="lang lang-en">🌐 MIO Identity</h3>
+    <h3 class="lang lang-ru">🌐 Удостоверение MIO</h3>
+    <div class="identity-box">
+      <p class="lang lang-en">MIO-ID: <strong>mio-x7v3lcq0-romanp</strong><br/>Issued by Masovskiy International Organization<br/>Verified via MIO Registry and IANA PEN 63733</p>
+      <p class="lang lang-ru">MIO-ID: <strong>mio-x7v3lcq0-romanp</strong><br/>Выдано Masovskiy International Organization<br/>Проверено в реестре MIO и IANA PEN 63733</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
